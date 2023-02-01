@@ -1,8 +1,15 @@
 const start = document.getElementById('start-button');
 const dialog = document.getElementById('dialog')
+const ok = document.getElementById('ok-button')
+//const restart = document.getElementById('restart')
+const rulesContainer = document.getElementById('rules-container')
+const modalWin = document.getElementById('winModal')
+const modalLost = document.getElementById('lostModal')
+const nextLevel = document.getElementById('next-level')
+const restart = document.getElementById('restart')
 let gridElement = document.querySelector('#grid');
 let gridCell = gridElement.getElementsByClassName('cell');
-let hiddenButton = document.querySelectorAll('.hidden-button');
+//let hiddenButton = document.querySelectorAll('.reset-button');
 let columns = 10;
 let rows = 10;
 let cells = [];
@@ -13,13 +20,13 @@ let currentPosition = 0;
 //numbers in parenthesis mark the end of a row
 // Grid levels
 let level1 = [1,0,1,1,1,1,1,1,1,1,
-              1,0,1,1,0,0,0,0,0,0,
-              1,0,1,1,0,0,0,0,1,0,
-              1,0,1,1,0,1,1,1,1,0,
-              1,0,1,1,0,1,1,1,1,0,
-              1,0,1,1,0,1,1,1,1,2,
-              1,0,1,1,0,0,1,1,1,1,
-              1,0,1,1,0,0,1,1,1,1,
+              1,0,0,0,0,0,0,0,0,0,
+              1,1,1,1,0,0,0,0,1,0,
+              2,0,1,1,1,1,1,1,1,0,
+              1,0,1,1,1,1,1,1,0,0,
+              1,0,1,1,1,1,1,1,0,1,
+              1,0,1,1,0,0,1,1,0,1,
+              1,0,1,1,0,0,0,0,0,1,
               1,0,0,0,0,0,1,1,1,1,
               1,1,1,1,1,1,1,1,1,1]
 let level2 = [1,0,1,1,1,1,1,1,1,1,
@@ -28,10 +35,31 @@ let level2 = [1,0,1,1,1,1,1,1,1,1,
               2,0,0,0,1,0,0,1,1,1,
               1,0,0,0,1,0,0,1,1,1,
               1,1,0,0,0,1,0,0,0,1,
-              1,1,0,0,1,0,1,0,0,1,
+              1,1,0,0,1,0,0,0,0,1,
               1,1,0,0,0,0,0,0,0,1,
               1,1,0,0,0,0,0,0,0,1,
               1,1,1,1,1,1,1,1,1,1]
+              let level3 = [1,0,1,1,1,1,1,1,1,1,
+                1,0,0,0,0,0,1,1,1,1,
+                1,1,1,1,1,0,1,1,1,1,
+                2,0,0,0,1,0,0,1,1,1,
+                1,0,0,0,1,0,0,1,1,1,
+                1,1,0,0,0,0,0,0,0,1,
+                1,1,0,0,1,1, 1,1,1,1,
+                1,1,0,0,0,0,0,0,0,1,
+                1,1,0,0,0,0,0,0,0,1,
+                1,1,1,1,1,1,1,1,1,1]
+                let level4 = [1,0,0,0,0,0,0,0,0,0,
+                    1,0,0,0,0,0,1,1,1,1,
+                    1,1,1,1,1,0,1,1,1,1,
+                    2,0,0,0,1,0,0,1,1,1,
+                    1,0,0,0,1,0,0,1,1,1,
+                    1,1,0,0,0,1,0,0,0,1,
+                    1,1,0,0,1,0,0,0,0,1,
+                    1,1,0,0,0,0,0,0,0,1,
+                    1,1,0,0,0,0,0,0,0,1,
+                    1,1,1,1,1,1,1,1,1,1]
+let allLevels = [level1, level2, level3, level4]
 
 
 function createCells(type) {
@@ -47,6 +75,7 @@ function createGrid(levelArray) {
     // for (let i = 0; i < columns * rows; i++) {
     //     createCells()
     // }
+    cells.splice(0,cells.length)
 levelArray.forEach(element => {
     if (element === 0){
         createCells()
@@ -76,7 +105,6 @@ window.addEventListener('keydown', (event) =>{
             }
             hidePlayer()
             currentPosition--
-
             displayPlayer(currentPosition)
         break
         case 'ArrowRight':
@@ -104,20 +132,57 @@ window.addEventListener('keydown', (event) =>{
             displayPlayer(currentPosition)
         break
     }
+    endGame()
 })
-
-
-
-function hiddenButtons(){
-    hiddenButton.forEach(element => element.style.visibility = 'visible')
+function endGame(){
+    if (cells[currentPosition].classList.contains('exit')){
+        modalWin.showModal()
+    }
+    else if (cells[currentPosition].classList.contains('wall')){
+        modalLost.showModal()
+    }
+}
+function lightsOff(){
+        cells.forEach(element => element.classList.add('lights-off'))
 }
 
-start.onclick = function startTheGame(){
+// nextLevel.onclick = function nextLevelStart(){
+//     modalWin.close()
+//     currentPosition = 1
+//     gridElement.innerHTML = ''
+    
+    
+//     let randomNum = Math.floor(Math.random()* allLevels.length)
+//     createGrid(allLevels[randomNum])
+//     displayPlayer(currentPosition)
+//     console.log(cells);
+// }
+ok.onclick = function rules(){
+    //start.style.visibility = 'visible'
+    rulesContainer.style.display= 'none'
+    startTheGame()
+}
+
+function startTheGame(){
     currentPosition = 1
-    gridElement.innerHTML = ''
+    gridElement.innerHTML=''
     cells = []
-    createGrid(level2)
+    let randomNum = Math.floor(Math.random()* allLevels.length)
+    createGrid(allLevels[randomNum])
     displayPlayer(currentPosition)
-    start.style.visibility = 'hidden'
-    hiddenButtons()
+    //start.style.visibility = 'hidden'
+    restart.style.visibility = 'visible'
+    setTimeout(lightsOff, 5000)
 }
+restart.addEventListener('click', ()=> {
+    modalLost.close()
+    clearTimeout()
+    startTheGame()
+})
+//start.addEventListener('click', startTheGame)
+
+nextLevel.addEventListener('click', ()=> {
+    modalWin.close()
+    clearTimeout()
+    startTheGame()
+})

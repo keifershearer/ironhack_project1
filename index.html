@@ -10,21 +10,31 @@
 </head>
 <body>
     <h1 id = "title" >The Backrooms</h1>
-    <div id='grid'></div>
-        <div id="rules-container">
+    <div id="rules-container" class="container">
         <h2>Rules:</h2>
         <ul>
             <li>Use arrow keys to navigate maze</li>
             <li>Memorize pattern to get to the end</li>
             <li>If you touch a wall you lose</li>
-            <li>Get one "Turn on the light!" per try</li>
-            <li>Watch out for monsters!😱</li>
+            <li>Watch out for monsters 😱</li>
+            <li>🟧 is player position</li>
+            <li>🟩 is end of level</li>
         </ul>
-        </div>
-        <div id="container">
-            <button id="restart" class="button hidden-button">Restart</button>
-            <button onclick="startTheGame()" id="start-button" class="button">Start</button>
-            <button id="light-on" class="button hidden-button">Turn light on!</button>
-        </div>
+        <button id="ok-button" class="button">Start</button>
+    </div>
+    <div id='grid'>
+    </div>
+    <div class="container">
+        <!--<button id="restart" class="button hidden-button">Restart</button>-->
+        <!--<button id="start-button" class="button hidden-button">Start</button>-->
+    </div>
+    <dialog id="winModal" class="myModal">
+        <p>You made it!</p>
+        <button id="next-level" class="button">Next Level</button>
+    </dialog>
+    <dialog id="lostModal" class="myModal">
+        <!--<img src="stock-photo-scary-zombie-female-face-on-black-background-illustration-in-horror-genre-1155762037.jpg" alt="zombie face" class="image">-->
+        <button id="restart" class="button">Restart</button>
+    </dialog>
 </body>
 </html>

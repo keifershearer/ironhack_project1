@@ -9,7 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 150px;
+    height: 255px;
     color: white;
     background-color: black;
 }
@@ -28,13 +28,26 @@
     width: 50px;
     border: .5px solid white;
 }
-#container {
+
+.cell.lights-off {
+    background-color: black;
+}
+.container {
     width: 100%;
     display: flex;
     justify-content: center;
     padding: 2rem;
     background-color: black;
 }
+#rules-container {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
 .button {
     border-radius: 10px;
     background-color: white; 
@@ -45,7 +58,7 @@
     margin: 1rem;
 }
 .player {
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(236, 141, 7);
 }
 .hidden-button {
     visibility: hidden;
@@ -54,8 +67,14 @@
     background-color: black;
 }
 .exit {
-    background-color: rgb(60, 107, 60);
+    background-color: rgb(43, 167, 43);
 }
-#rules-container {
-    
+.myModal {
+   margin: auto;
+   padding: 2rem;
+    background-color: white;
+}
+.image {
+    width: 800px;
+    height: 800px;
 }
