@@ -28,7 +28,6 @@
     width: 50px;
     border: .5px solid white;
 }
-
 .cell.lights-off {
     background-color: black;
 }
@@ -47,7 +46,6 @@
     align-items: center;
     font-size: 1.5rem;
 }
-
 .button {
     border-radius: 50px;
     background-color: white; 
@@ -64,12 +62,8 @@
     -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 6px 5px 15px 5px rgba(0,0,0,0); 
 box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 6px 5px 15px 5px rgba(0,0,0,0);
 }
-
 #player {
     background-color: rgb(236, 141, 7);
-}
-.hidden-button {
-    visibility: hidden;
 }
 .wall {
     background-color: black;
@@ -85,7 +79,6 @@ box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 6px 5px 15p
 :focus, :focus-visible {
     outline: none;
 }
-
 p {
     font-size: 2rem;
 }

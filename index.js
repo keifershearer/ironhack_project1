@@ -14,7 +14,6 @@ let cells = [];
 let currentPosition = 0;
 let timeoutId = null
 
-
 //grid wall template 1,0,1,1,1,1,1,1,1,1(1),1,0,1,1,0,0,0,0,0,0(2),1,0,1,1,0,0,0,0,1,0(3),1,0,1,1,0,1,1,1,1,0(4),1,0,1,1,0,1,1,1,1,0(5),1,0,1,1,0,1,1,1,1,0(6),1,0,1,1,0,0,1,1,1,1(7),1,0,1,1,0,0,1,1,1,1(8),1,0,0,0,0,0,1,1,1,1(9),1,1,1,1,1,1,1,1,1,1(10)
 //numbers in parenthesis mark the end of a row
 // Grid levels
@@ -71,9 +70,6 @@ let level5 = [1,0,1,1,1,1,1,1,1,1,
 //below is an array of the level arrays used to randomly loop levels
 let allLevels = [level1, level2, level3, level4, level5]
 
-let arrayMonster = ["clown.jpg", "leech.jpg", "selfie.jpg", "zombie.jpg"]
-
-
 function createCells(type) {
     const div = document.createElement('div')
     div.classList.add('cell')
@@ -96,9 +92,6 @@ function createGrid(levelArray) {
     })
 
 }
-
-
-
 function displayPlayer(position) {
     cells[position].id = 'player'
 }
@@ -167,7 +160,6 @@ function startTheGame() {
     let randomNum = Math.floor(Math.random() * allLevels.length)
     createGrid(allLevels[randomNum])
     displayPlayer(currentPosition)
-    restart.style.visibility = 'visible'
     timeoutId = setTimeout(lightsOff, 2000)
 }
 restart.addEventListener('click', () => {
