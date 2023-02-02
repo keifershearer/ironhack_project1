@@ -1,7 +1,6 @@
 const start = document.getElementById('start-button');
 const dialog = document.getElementById('dialog')
 const ok = document.getElementById('ok-button')
-//const restart = document.getElementById('restart')
 const rulesContainer = document.getElementById('rules-container')
 const modalWin = document.getElementById('winModal')
 const modalLost = document.getElementById('lostModal')
@@ -9,7 +8,6 @@ const nextLevel = document.getElementById('next-level')
 const restart = document.getElementById('restart')
 let gridElement = document.querySelector('#grid');
 let gridCell = gridElement.getElementsByClassName('cell');
-//let hiddenButton = document.querySelectorAll('.reset-button');
 let columns = 10;
 let rows = 10;
 let cells = [];
@@ -70,7 +68,10 @@ let level5 = [1,0,1,1,1,1,1,1,1,1,
              0,0,0,0,0,0,0,0,0,1,
              0,1,0,1,1,1,0,0,0,1,
              1,1,1,1,1,1,1,1,1,1]
-    let allLevels = [level1, level2, level3, level4, level5]
+//below is an array of the level arrays used to randomly loop levels
+let allLevels = [level1, level2, level3, level4, level5]
+
+let arrayMonster = ["clown.jpg", "leech.jpg", "selfie.jpg", "zombie.jpg"]
 
 
 function createCells(type) {
@@ -83,9 +84,6 @@ function createCells(type) {
     cells.push(div)
 }
 function createGrid(levelArray) {
-    // for (let i = 0; i < columns * rows; i++) {
-    //     createCells()
-    // }
     cells.splice(0, cells.length)
     levelArray.forEach(element => {
         if (element === 0) {
@@ -150,30 +148,19 @@ function endGame() {
         modalWin.showModal()
     }
     else if (cells[currentPosition].classList.contains('wall')) {
+        let rand = Math.floor(Math.random()*arrayMonster.length)
+        modalLost.style.backgroundImage = `url(../images/${arrayMonster[rand]})`
         modalLost.showModal()
     }
 }
 function lightsOff() {
     cells.forEach(element => { element.classList.add('lights-off') })
 }
-
-// nextLevel.onclick = function nextLevelStart(){
-//     modalWin.close()
-//     currentPosition = 1
-//     gridElement.innerHTML = ''
-
-
-//     let randomNum = Math.floor(Math.random()* allLevels.length)
-//     createGrid(allLevels[randomNum])
-//     displayPlayer(currentPosition)
-//     console.log(cells);
-// }
 ok.onclick = function rules() {
     //start.style.visibility = 'visible'
     rulesContainer.style.display = 'none'
     startTheGame()
 }
-
 function startTheGame() {
     currentPosition = 1
     gridElement.innerHTML = ''
@@ -190,8 +177,6 @@ restart.addEventListener('click', () => {
     clearTimeout(timeoutId)
     startTheGame()
 })
-//start.addEventListener('click', startTheGame)
-
 nextLevel.addEventListener('click', () => {
     modalWin.close()
     clearTimeout(timeoutId)
