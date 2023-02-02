@@ -148,8 +148,7 @@ function endGame() {
         modalWin.showModal()
     }
     else if (cells[currentPosition].classList.contains('wall')) {
-        let rand = Math.floor(Math.random()*arrayMonster.length)
-        modalLost.style.backgroundImage = `url(../images/${arrayMonster[rand]})`
+
         modalLost.showModal()
     }
 }
@@ -168,7 +167,6 @@ function startTheGame() {
     let randomNum = Math.floor(Math.random() * allLevels.length)
     createGrid(allLevels[randomNum])
     displayPlayer(currentPosition)
-    //start.style.visibility = 'hidden'
     restart.style.visibility = 'visible'
     timeoutId = setTimeout(lightsOff, 2000)
 }
