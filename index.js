@@ -73,7 +73,9 @@ let allLevels = [level1, level2, level3, level4, level5]
 function createCells(type) {
     const div = document.createElement('div')
     div.classList.add('cell')
-    div.classList.add(type)
+    if (type) {
+        div.classList.add(type)
+    }
     gridElement.append(div)
     cells.push(div)
 }
