@@ -8,8 +8,3 @@ Made using HTML, CSS, and Javascript.
 - DOM manipulation to access different parts of grid
 
 ## [Demo](https://keifershearer.github.io/the_backrooms/)
-
-## Whats next?
-- Add more levels
-- Add hint button to "turn light on"
-- Add monster that chases if taking too long
